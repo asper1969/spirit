@@ -1,0 +1,240 @@
+@import "helpers/reset";
+@import "helpers/mixins";
+@import "helpers/vars";
+@import "helpers/slick";
+@import "helpers/slick-theme";
+@import "helpers/jquery.fancybox.scss";
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,700,900&subset=cyrillic-ext');
+
+*{
+  box-sizing: border-box;
+}
+
+html{
+  overflow-x: hidden;
+}
+
+body{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  color: $c-text;
+  //padding-top: 76px;
+
+  &.is-admin{
+    //padding-top: 108px;
+
+    header{
+      //top: 32px;
+    }
+  }
+}
+
+header{
+  //position: fixed;
+  //top: 0;
+  //z-index: 100;
+  //left: 0;
+  width: 100%;
+  
+  .wrapper{
+
+    .main__menu{
+      background: $c-primary;
+
+      >.container{
+        width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        position: relative;
+        overflow: hidden;
+        max-height: 0;
+
+        @include transite(all);
+
+        &.is-active{
+          max-height: 50px;
+        }
+      }
+
+      ul{
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        height: 50px;
+        margin-right: 124px;
+
+        @include transite(all);
+
+        li{
+          margin-right: 54px;
+
+          &:last-of-type{
+            margin-left: 0;
+          }
+        }
+
+        a{
+          color: #fff;
+          font-weight: 300;
+
+          &:hover{
+            color: $c-accent;
+          }
+
+          @include transite(all);
+        }
+      }
+
+      .btn__close{
+        color: #fff;
+        font-weight: 300;
+        font-size: 36px;
+        position: absolute;
+        right: 49px;
+        top: 50%;
+        transform-origin: 50% 50%;
+        transform: translateY(-50%) rotate(45deg);
+        cursor: pointer;
+
+        &:hover{
+          color: $c-accent;
+        }
+
+        @include transite(all);
+      }
+    }
+
+
+    >.container{
+      width: 1200px;
+      height: 76px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fff;
+
+      .promo{
+        display: flex;
+        align-items: center;
+
+        .logo{
+          margin-right: 46px;
+        }
+
+        .info{
+          font-size: 14px;
+          width: 306px;
+          font-weight: 300;
+        }
+      }
+
+      .btns{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        .contacts{
+          display: flex;
+        }
+
+        .btn{
+          position: relative;
+          margin-right: 52px;
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+
+          &:hover{
+
+            &:after{
+              width: 100%;
+            }
+          }
+
+          &:before{
+            content: '';
+            display: block;
+            position: relative;
+            width: 20px;
+            height: 20px;
+          }
+
+          &:after{
+            content: '';
+            display: block;
+            position: absolute;
+            width: 9px;
+            height: 1px;
+            border-bottom: 3px solid $c-accent;
+            bottom: 14px;
+            left: 50%;
+            transform: translateX(-50%);
+
+            @include transite(all);
+          }
+
+          &:first-of-type{
+
+            &:before{
+              background: url('../images/icons/mobile.png') no-repeat center center;
+            }
+          }
+
+          &:nth-of-type(2){
+
+            &:before{
+              background: url('../images/icons/phone.png') no-repeat center center;
+            }
+          }
+
+          &:nth-of-type(3){
+
+            &:before{
+              background: url('../images/icons/mail.png') no-repeat center center;
+            }
+          }
+
+          a{
+            display: block;
+            max-width: 0;
+            overflow: hidden;
+          }
+        }
+
+        .btn__menu{
+          width: 46px;
+          height: 46px;
+          border-radius: 100%;
+          background: $c-btn;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          flex-direction: column;
+          margin-right: 17px;
+
+          @include transite(all);
+
+          &:hover{
+            background: $c-accent;
+          }
+
+          .circle{
+            width: 5px;
+            height: 5px;
+            border-radius: 100%;
+            background: #fff;
+            margin-bottom: 5px;
+
+            &:last-of-type{
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
