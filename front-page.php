@@ -1,42 +1,41 @@
 <?php get_header(); ?>
 <div class="products__wrapper">
-    <div class="container">
-        <div class="block-title">
+    <div class="block-title">
+        <?php
+        $block = get_post(60);
+        ?>
+        <h2><?php echo $block->post_title;?></h2>
+        <div class="text">
             <?php
-            $block = get_post(60);
+            echo strip_tags($block->post_content);
             ?>
-            <h2><?php echo $block->post_title;?></h2>
-            <div class="text">
-                <?php
-                echo strip_tags($block->post_content);
-                ?>
-            </div>
         </div>
-        <div class="products">
-            <?php
-            $products = get_posts(array(
-                'order' => 'ASC',
-                'post_type' => 'products'
-            ));
-            ?>
+    </div>
+    <div class="products">
+        <?php
+        $products = get_posts(array(
+            'order' => 'ASC',
+            'post_type' => 'products'
+        ));
+        ?>
 
-            <?php foreach($products as $product):?>
-                <?php
-                $product_images = explode(',', get_field("images", $product->ID));
-                $product_image = wp_get_attachment_image($product_images[0], 'product-thumb' );
-                ?>
-                <div class="product">
-                    <a href="<?php echo get_permalink($product->ID);?>">
+        <?php foreach($products as $product):?>
+            <?php
+            $product_images = explode(',', get_field("images", $product->ID));
+            $product_image = wp_get_attachment_image($product_images[0], 'product-thumb' );
+            $product_short = get_field("shortcut", $product->ID);
+            ?>
+            <div class="product">
+                <a href="<?php echo get_permalink($product->ID);?>">
                         <span class="img">
                             <?php echo $product_image;?>
                         </span>
-                        <h4 class="title"><?php echo $product->post_title;?></h4>
-                    </a>
-                </div>
-            <?php endforeach;?>
-        </div>
-        <div class="down__btn">+</div>
+                    <h4 class="title"><?php echo $product_short;?></h4>
+                </a>
+            </div>
+        <?php endforeach;?>
     </div>
+    <div class="down__btn">+</div>
 </div>
 <div class="about__wrapper">
     <div class="container">
@@ -44,7 +43,7 @@
             <?php
             $block = get_post(64);
             ?>
-            <h2><?php echo $block->post_title;?></h2>
+            <h4><?php echo $block->post_title;?></h4>
             <div class="text">
                 <?php
                 echo $block->post_content;
@@ -61,7 +60,7 @@
                 <?php
                 $block = get_post(128);
                 ?>
-                <h3><?php echo $block->post_title;?></h3>
+                <h4><?php echo $block->post_title;?></h4>
                 <div class="text">
                     <?php
                     echo $block->post_content;
@@ -76,11 +75,13 @@
                 ));
                 ?>
                 <?php foreach($years as $year):?>
-                    <p class="title"><?php echo $year->post_title;?></p>
-                    <div class="text">
-                        <?php
-                        echo $year->post_content;
-                        ?>
+                    <div class="benefit">
+                        <p class="title"><?php echo $year->post_title;?></p>
+                        <div class="text">
+                            <?php
+                            echo $year->post_content;
+                            ?>
+                        </div>
                     </div>
                 <?php endforeach;?>
             </div>
